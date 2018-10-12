@@ -172,6 +172,7 @@ class Simulation(object):
     def time_step(self):
         for interactions in self.population:
 
+
         # TODO: Finish this method!  This method should contain all the basic logic
         # for computing one time step in the simulation.  This includes:
             # - For each infected person in the population:
@@ -225,6 +226,12 @@ class Simulation(object):
         #   - Set this Person's .infected attribute to Virus object.
         # NOTE: Once you have iterated through the entire list of self.newly_infected, remember
         # to reset self.newly_infected back to an empty list!
+        for person_id in self.newly_infected:
+            for person in self.population:
+                if person._id == person_id:
+                    person.infected = self.virus
+        self.newly_infected = []
+
 
 if __name__ == "__main__":
     params = sys.argv[1:]
