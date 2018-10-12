@@ -193,7 +193,7 @@ class Simulation(object):
         if random_person.infected == None and random_person.is_vaccinated == False:
             new_sick = random.uniform(0,1)
             if new_sick < self.virus.repro_rate:
-                newly_infected.append(random_person)
+                newly_infected.append(random_person._id)
         # TODO: Finish this method! This method should be called any time two living
         # people are selected for an interaction.  That means that only living people
         # should be passed into this method.  Assert statements are included to make sure
