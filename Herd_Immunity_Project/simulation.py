@@ -126,7 +126,7 @@ class Simulation(object):
                     self.next_person_id += 1
                 else:
                     unvaccinated_person = Person(self.next_person_id,False)
-                    populate.append(unvaccinated_person)
+                    population.append(unvaccinated_person)
                     self.next_person_id += 1
             # TODO: After any Person object is created, whether sick or healthy,
             # you will need to increment self.next_person_id by 1. Each Person object's
@@ -140,7 +140,7 @@ class Simulation(object):
         #     - The entire population is dead.
         #     - There are no infected people left in the population.
         # In all other instances, the simulation should continue.
-        if self.population_size == 0 or self.current_infected == 0 :
+        if self.population_size == 0 or self.current_infected == 0:
             return False
         else:
             return True
@@ -159,15 +159,19 @@ class Simulation(object):
         time_step_counter = 0
         # TODO: Remember to set this variable to an intial call of
         # self._simulation_should_continue()!
-        should_continue = None
+        should_continue = self._simulation_should_continue()
         while should_continue:
         # TODO: for every iteration of this loop, call self.time_step() to compute another
         # round of this simulation.  At the end of each iteration of this loop, remember
         # to rebind should_continue to another call of self._simulation_should_continue()!
-            pass
-        print('The simulation has ended after {time_step_counter} turns.'.format(time_step_counter))
+            self.time_step()
+            time_step_counter += 1
+            should_continue = self._simulation_should_continue()
+        print('The simulation has ended after {} turns.'.format(time_step_counter))
 
     def time_step(self):
+        for interactions in self.population:
+
         # TODO: Finish this method!  This method should contain all the basic logic
         # for computing one time step in the simulation.  This includes:
             # - For each infected person in the population:
@@ -182,12 +186,19 @@ class Simulation(object):
             pass
 
     def interaction(self, person, random_person):
+
+        assert person.is_alive == True
+        assert random_person.is_alive == True
+
+        if random_person.infected == None and random_person.is_vaccinated == False:
+            new_sick = random.uniform(0,1)
+            if new_sick < self.virus.repro_rate:
+                newly_infected.append(random_person)
         # TODO: Finish this method! This method should be called any time two living
         # people are selected for an interaction.  That means that only living people
         # should be passed into this method.  Assert statements are included to make sure
         # that this doesn't happen.
-        assert person1.is_alive == True
-        assert random_person.is_alive == True
+
 
         # The possible cases you'll need to cover are listed below:
             # random_person is vaccinated:
@@ -200,6 +211,8 @@ class Simulation(object):
             #     Simulation object's newly_infected array, so that their .infected
             #     attribute can be changed to True at the end of the time step.
         # TODO: Remember to call self.logger.log_interaction() during this method!
+
+
         pass
 
     def _infect_newly_infected(self):
