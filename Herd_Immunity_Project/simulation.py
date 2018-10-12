@@ -222,7 +222,7 @@ class Simulation(object):
         # created.  Iterate though this list.
         # For every person id in self.newly_infected:
         #   - Find the Person object in self.population that has this corresponding ID.
-        #   - Set this Person's .infected attribute to True.
+        #   - Set this Person's .infected attribute to Virus object.
         # NOTE: Once you have iterated through the entire list of self.newly_infected, remember
         # to reset self.newly_infected back to an empty list!
 
