@@ -110,7 +110,7 @@ class Logger(object):
 
         if did_die_from_infection == False:
             file.write('{} survives\n'.format(person._id))
-        else if did_die_from_infection == True:
+        elif did_die_from_infection == True:
             file.write('{} dies\n'.format(person._id))
         else:
             file.write('{} no interactions has happened yet\n'.format(person._id))
